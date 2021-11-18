@@ -85,44 +85,49 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold( 
-      body:Container( child:StreamBuilder<int>(
-  stream: _stopWatchTimer.rawTime,
-  initialData: 0,
-  builder: (context, snap) {
-    final value = snap.data;
-    final displayTime = StopWatchTimer.getDisplayTime(value!);
-    return Column(
+      body:Container( 
+        child:StreamBuilder<int>(
+          stream: _stopWatchTimer.rawTime,
+          initialData: 0,
+          builder: (context, snap) {
+            final value = snap.data;
+            final displayTime = StopWatchTimer.getDisplayTime(value!);
+        return Column(
       
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.all(8),
-          child: Text(
-            displayTime,
-            style: const TextStyle(
-              fontSize: 40,
-              fontFamily: 'Helvetica',
-              fontWeight: FontWeight.bold
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.all(8),
+              child: Text(
+                displayTime,
+                style: const TextStyle(
+                fontSize: 40,
+                fontFamily: 'Helvetica',
+                fontWeight: FontWeight.bold
+                ),
+              ),
             ),
-          ),
-        ),
         
-      Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          IconButton(
-            icon: Icon(Icons.play_arrow),
-            onPressed: startTimer,
-      ),
-          IconButton(
-            onPressed: stopTimer, 
-            icon: Icon(Icons.pause)),
-          IconButton(
-            icon: Icon(Icons.restore_outlined), 
-            onPressed: resetTimer,),  
-      ],),
-      
-      ]);
-  },
-)));
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  IconButton(
+                    icon: Icon(Icons.play_arrow),
+                  onPressed: startTimer,
+                  ),
+                  IconButton(
+                    onPressed: stopTimer, 
+                    icon: Icon(Icons.pause)
+                  ),
+                  IconButton(
+                    icon: Icon(Icons.restore_outlined), 
+                    onPressed: resetTimer,),  
+              ],
+            ),
+          ]
+        );
+      },
+      )
+    )
+  );
   }
 }
